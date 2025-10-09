@@ -1,0 +1,17 @@
+{
+  "name": "pomodoro-todo",
+  "version": "1.0.0",
+  "description": "To-Do app com temporizador Pomodoro em Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "electron": "^31.0.0"
+  }
+}

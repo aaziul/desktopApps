@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pomodoro To-Do</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="theme-toggle">
+        <button id="toggle-theme">🌙 Modo Escuro/Claro</button>
+    </div>
+
+    <h1>Pomodoro To-Do</h1>
+
+    <div id="settings">
+        <h3>Configurações</h3>
+        <label>
+            Foco (min):
+            <input type="number" id="focus-time" value="25" min="1" max="120">
+        </label>
+        <label>
+            Pausa (min):
+            <input type="number" id="break-time" value="5" min="1" max="60">
+        </label>
+        <button id="apply-settings">Aplicar</button>
+    </div>
+
+    <div id="pomodoro">
+        <h2 id="timer">25:00</h2>
+        <div class="controls">
+            <button id="start">▶️ Iniciar</button>
+            <button id="pause">⏸️ Pausar</button>
+            <button id="reset">🔁 Resetar</button>
+        </div>
+        <audio id="alarm-sound" src="alarm.m4A"></audio>
+    </div>
+
+    <div id="todo">
+        <h3>Tarefas</h3>
+        <input id="new-task" type="text" placeholder="Nova tarefa">
+        <button id="add-task">➕</button>
+        <ul id="task-list"></ul>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+
+</html>
