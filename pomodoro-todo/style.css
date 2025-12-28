@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap'); /* Jersey 10 font */
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+/* Jersey 10 font */
 
 :root {
     --primary-color: #D291BC;
@@ -23,7 +24,8 @@ body.dark {
 }
 
 .title {
-    font-size: 2.5em;
+    font-size: 50px;
+    letter-spacing: 3px;
     margin-bottom: 20px;
     color: var(--text-color);
 }
@@ -167,7 +169,7 @@ body.dark {
     outline: 2px solid var(--primary-color);
 }
 
-.focus-input::-webkit-inner-spin-button, 
+.focus-input::-webkit-inner-spin-button,
 .focus-input::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
@@ -193,6 +195,7 @@ body.dark {
 .checkbox9 {
     display: inline-block;
 }
+
 .checkbox9 input {
     display: none;
 }
@@ -234,26 +237,28 @@ body.dark {
     transform: rotate(-45deg);
 }
 
-.checkbox9 input:checked + label,
+.checkbox9 input:checked+label,
 label.checked {
     border-color: #34b93d;
 }
 
-.checkbox9 input:checked + label::after,
+.checkbox9 input:checked+label::after,
 label.checked::after {
     height: 2px;
     animation: checkbox9-bottom calc(0.4s / 2) ease forwards;
 }
 
-.checkbox9 input:checked + label::before,
+.checkbox9 input:checked+label::before,
 label.checked::before {
     height: 36px;
     animation: checkbox9-top 0.4s ease forwards;
 }
+
 @keyframes checkbox9-bottom {
     0% {
         height: 0;
     }
+
     100% {
         height: 15px;
     }
@@ -263,9 +268,11 @@ label.checked::before {
     0% {
         height: 0;
     }
+
     50% {
         height: 0;
     }
+
     100% {
         height: 36px;
     }
@@ -289,7 +296,7 @@ body.dark .checkbox9 label {
 }
 
 /* When checked keep the green accent */
-body.dark .checkbox9 input:checked + label {
+body.dark .checkbox9 input:checked+label {
     border-color: #34b93d;
 }
 
@@ -303,4 +310,148 @@ body.dark .checkbox9 input:checked + label {
 
 body.dark .theme-toggle button {
     color: #fff;
+}
+
+/* TOGGLE BUTTON From Uiverse.io by andrew-demchenk0 */
+.switch {
+    --input-focus: var(--primary-color);
+    --font-color: #323232;
+    --font-color-sub: #666;
+    --bg-color: #fff;
+    --bg-color-alt: #666;
+    --main-color: #323232;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 50px;
+    height: 20px;
+}
+
+.toggle {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-colorcolor);
+    transition: 0.3s;
+}
+
+.slider:before {
+    box-sizing: border-box;
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    border: 2px solid var(--main-color);
+    border-radius: 5px;
+    left: -2px;
+    bottom: 2px;
+    background-color: var(--bg-color);
+    box-shadow: 0 3px 0 var(--main-color);
+    transition: 0.3s;
+}
+
+.toggle:checked+.slider {
+    background-color: var(--input-focus);
+}
+
+.toggle:checked+.slider:before {
+    transform: translateX(30px);
+}
+
+/* CHECKMARK From Uiverse.io by andrew-demchenk0 */
+.container {
+    --input-focus: #2d8cf0;
+    --input-out-of-focus: #ccc;
+    --bg-color: #fff;
+    --bg-color-alt: #666;
+    --main-color: #323232;
+    position: relative;
+    cursor: pointer;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+}
+
+.checkmark {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top: 0;
+    left: 0;
+    border: 2px solid var(--main-color);
+    border-radius: 5px;
+    box-shadow: 4px 4px var(--main-color);
+    background-color: var(--input-out-of-focus);
+    transition: all 0.3s;
+}
+
+.container input:checked~.checkmark {
+    background-color: var(--input-focus);
+}
+
+.checkmark:after {
+    content: "";
+    width: 7px;
+    height: 15px;
+    position: absolute;
+    top: 2px;
+    left: 8px;
+    display: none;
+    border: solid var(--bg-color);
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+}
+
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+/* APPLY BUTTON */
+.comic-button {
+    display: inline-block;
+    padding: 5px 10px;
+    font-family: 'Jersey 10', sans-serif;
+    letter-spacing: 3px;
+    font-size: medium;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: var(--primary-color);
+    border: 2px solid var(--text-color);
+    border-radius: 10px;
+    box-shadow: 2.5px 2.5px 0px var(--text-color);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.comic-button:hover {
+    background-color: white;
+    color: var(--text-color);
+    border: 2px solid var(--text-color);
+    box-shadow: 5px 5px 0px var(--text-color);
+}
+
+.comic-button:active {
+    background-color: white;
+    box-shadow: none;
+    transform: translateY(4px);
 }

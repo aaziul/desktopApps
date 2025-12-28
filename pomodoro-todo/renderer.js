@@ -1,12 +1,12 @@
 //npm run start or npm run dev
 
 window.addEventListener("DOMContentLoaded", () => {
-    // ===== Permissão para notificações =====
+    // Permission for Notifications
     if (Notification.permission !== "granted") {
         Notification.requestPermission();
     }
 
-    // ===== Pomodoro com ciclos configuráveis =====
+    // Pomodoro Timer
     let focusTime = 25 * 60; // default 25 min
     let breakTime = 5 * 60;  // default 5 min
     let timeLeft = focusTime;
@@ -51,15 +51,15 @@ window.addEventListener("DOMContentLoaded", () => {
                         onBreak = true;
                         timeLeft = breakTime;
                         updateTimer();
-                        showNotification("⏸️ Pausa iniciada!", `Hora de descansar ${breakTime / 60} min`);
-                        startTimer(); // inicia pausa automaticamente
+                        showNotification("Pausa iniciada!", `Hora de descansar ${breakTime / 60} min`);
+                        startTimer(); 
                     } else {
                         onBreak = false;
                         timeLeft = focusTime;
                         cycles++;
                         updateTimer();
-                        showNotification("✅ Ciclo concluído!", `Você completou ${cycles} ciclo(s)`);
-                        startTimer(); // inicia novo foco automaticamente
+                        showNotification("Ciclo concluído!", `Você completou ${cycles} ciclo(s)`);
+                        startTimer(); 
                     }
                 }
             }, 1000);
@@ -88,7 +88,6 @@ window.addEventListener("DOMContentLoaded", () => {
     pauseBtn.addEventListener("click", pauseTimer);
     resetBtn.addEventListener("click", resetTimer);
 
-    // Aplicar novos tempos
     applyBtn.addEventListener("click", () => {
         const newFocus = parseInt(focusInput.value);
         const newBreak = parseInt(breakInput.value);
@@ -101,51 +100,50 @@ window.addEventListener("DOMContentLoaded", () => {
 
     updateTimer();
 
-    // ===== To-Do List =====
+    // To-Do List
     const taskInput = document.getElementById("new-task");
     const addTaskBtn = document.getElementById("add-task");
     const taskList = document.getElementById("task-list");
 
     function loadTasks() {
-        const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
-        taskList.innerHTML = "";
-        tasks.forEach((task, index) => {
-            const li = document.createElement("li");
-            li.className = task.done ? "done" : "";
-            if (document.body.classList.contains("dark")) li.classList.add("dark");
+    const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+    taskList.innerHTML = "";
+    
+    tasks.forEach((task, index) => {
+        const li = document.createElement("li");
+        li.className = task.done ? "done" : "";
+        if (document.body.classList.contains("dark")) li.classList.add("dark");
 
-            // Create custom animated checkbox (.checkbox9)
-            const checkboxWrapper = document.createElement("div");
-            checkboxWrapper.className = "checkbox9";
+        const labelContainer = document.createElement("label");
+        labelContainer.className = "container";
 
-            const checkboxId = `task-checkbox-${index}`;
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = task.done;
+        checkbox.addEventListener("change", () => toggleTask(index));
 
-            const checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            checkbox.id = checkboxId;
-            checkbox.checked = task.done;
-            checkbox.addEventListener("change", () => toggleTask(index));
+        const checkmarkDiv = document.createElement("div");
+        checkmarkDiv.className = "checkmark";
 
-            const checkboxLabel = document.createElement("label");
-            checkboxLabel.htmlFor = checkboxId;
+        labelContainer.appendChild(checkbox);
+        labelContainer.appendChild(checkmarkDiv);
+        
+        li.appendChild(labelContainer);
 
-            checkboxWrapper.appendChild(checkbox);
-            checkboxWrapper.appendChild(checkboxLabel);
-            li.appendChild(checkboxWrapper);
+        const span = document.createElement("span");
+        span.textContent = task.text;
+        span.style.marginLeft = "12px";
+        li.appendChild(span);
 
-            const span = document.createElement("span");
-            span.textContent = task.text;
-            span.style.marginLeft = "8px";
-            li.appendChild(span);
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "🗑️";
+        deleteBtn.className = "delete-btn";
+        deleteBtn.addEventListener("click", () => deleteTask(index));
+        li.appendChild(deleteBtn);
 
-            const deleteBtn = document.createElement("button");
-            deleteBtn.textContent = "🗑️";
-            deleteBtn.addEventListener("click", () => deleteTask(index));
-            li.appendChild(deleteBtn);
-
-            taskList.appendChild(li);
-        });
-    }
+        taskList.appendChild(li);
+    });
+}
 
     function saveTasks(tasks) {
         localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -175,10 +173,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
     addTaskBtn.addEventListener("click", addTask);
 
-    // ===== Tema Claro/Escuro =====
+    // Toggle Theme
     const toggleThemeBtn = document.getElementById("toggle-theme");
 
-    // Apply saved theme from localStorage (persist across reloads)
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "dark") {
         document.body.classList.add("dark");
@@ -186,16 +183,13 @@ window.addEventListener("DOMContentLoaded", () => {
         document.body.classList.remove("dark");
     }
 
-    // If the toggle control exists, initialize and wire it up.
-    const themeToggle = document.querySelector('.theme-toggle');
+    const themeToggle = document.querySelector('.toggle');
     if (themeToggle) {
-        // make it focusable and keyboard operable
         themeToggle.tabIndex = 0;
         themeToggle.setAttribute('role', 'button');
         themeToggle.setAttribute('aria-pressed', document.body.classList.contains('dark'));
 
         const updateToggleVisual = () => {
-            // toggle a .is-dark state on the control so CSS can style rays etc.
             themeToggle.classList.toggle('is-dark', document.body.classList.contains('dark'));
             themeToggle.setAttribute('aria-pressed', document.body.classList.contains('dark'));
         };
@@ -206,7 +200,7 @@ window.addEventListener("DOMContentLoaded", () => {
             document.body.classList.toggle('dark');
             localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
             updateToggleVisual();
-            loadTasks(); // reaplica dark nos items
+            loadTasks(); 
         };
 
         themeToggle.addEventListener('click', toggleHandler);
@@ -218,6 +212,5 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Load tasks after theme is applied so items get correct styling
     loadTasks();
 });

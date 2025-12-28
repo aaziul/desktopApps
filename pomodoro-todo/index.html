@@ -11,10 +11,11 @@
     <h1 class="title">Pomodoro To-Do</h1>
 
     <!-- Theme Toggle Button -->
-    <div class="theme-toggle" title="Toggle theme">
-        <span class="theme-toggle__icon">🌓</span>
-        <span class="theme-toggle-sr">Toggle theme</span>
-    </div>
+    <label class="switch" title="Toggle theme">
+        <input class="toggle" type="checkbox">
+        <span class="slider"></span>
+        <span class="card-side"></span>
+    </label>
 
     <!-- Time to focus Settings and Break -->
     <div id="settings" class="settings-section">
@@ -26,16 +27,16 @@
             Break Time:
             <input type="number" id="break-time" value="5" min="1" max="60" class="focus-input">
         </label>
-        <button id="apply-settings" class="apply-btn">Apply</button>
+        <button id="apply-settings" class="comic-button">Apply</button>
     </div>
 
     <!-- Timer Section -->
     <div id="pomodoro">
         <h2 id="timer">25:00</h2>
         <div class="controls">
-            <button id="start">Start</button>
-            <button id="pause">Pause</button>
-            <button id="reset">Reset</button>
+            <button id="start" class="comic-button">Start</button>
+            <button id="pause" class="comic-button">Pause</button>
+            <button id="reset" class="comic-button">Reset</button>
         </div>
         <audio id="alarm-sound" src="alarm.m4A"></audio>
     </div>
@@ -44,8 +45,8 @@
     <div id="todo">
         <h3>Tasks</h3>
         <input id="new-task" type="text" placeholder="New task">
-        <button id="add-task">➕</button>
-        <ul id="task-list"></ul>
+        <button id="add-task">+</button>
+        <ul id="task-list" class="container"></ul>
     </div>
 
     <script src="renderer.js"></script>
