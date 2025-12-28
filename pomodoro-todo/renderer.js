@@ -7,8 +7,8 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     // Pomodoro Timer
-    let focusTime = 25 * 60; // default 25 min
-    let breakTime = 5 * 60;  // default 5 min
+    let focusTime = 25 * 60;
+    let breakTime = 5 * 60; 
     let timeLeft = focusTime;
     let timerId = null;
     let onBreak = false;

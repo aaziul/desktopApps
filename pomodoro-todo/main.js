@@ -8,7 +8,6 @@ function createWindow() {
         width: 400,
         height: 600,
         webPreferences: {
-            // use a dedicated preload script (keeps renderer.js as the page script)
             preload: path.join(__dirname, "preload.js"),
         },
     });
