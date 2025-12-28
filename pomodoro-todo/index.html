@@ -8,38 +8,42 @@
 </head>
 
 <body>
-    <div class="theme-toggle">
-        <button id="toggle-theme">🌙 Modo Escuro/Claro</button>
+    <h1 class="title">Pomodoro To-Do</h1>
+
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle" title="Toggle theme">
+        <span class="theme-toggle__icon">🌓</span>
+        <span class="theme-toggle-sr">Toggle theme</span>
     </div>
 
-    <h1>Pomodoro To-Do</h1>
-
-    <div id="settings">
-        <h3>Configurações</h3>
+    <!-- Time to focus Settings and Break -->
+    <div id="settings" class="settings-section">
         <label>
-            Foco (min):
-            <input type="number" id="focus-time" value="25" min="1" max="120">
+            Focus Time:
+            <input type="number" id="focus-time" value="25" min="1" max="120" class="focus-input">
         </label>
         <label>
-            Pausa (min):
-            <input type="number" id="break-time" value="5" min="1" max="60">
+            Break Time:
+            <input type="number" id="break-time" value="5" min="1" max="60" class="focus-input">
         </label>
-        <button id="apply-settings">Aplicar</button>
+        <button id="apply-settings" class="apply-btn">Apply</button>
     </div>
 
+    <!-- Timer Section -->
     <div id="pomodoro">
         <h2 id="timer">25:00</h2>
         <div class="controls">
-            <button id="start">▶️ Iniciar</button>
-            <button id="pause">⏸️ Pausar</button>
-            <button id="reset">🔁 Resetar</button>
+            <button id="start">Start</button>
+            <button id="pause">Pause</button>
+            <button id="reset">Reset</button>
         </div>
         <audio id="alarm-sound" src="alarm.m4A"></audio>
     </div>
 
+    <!-- To-Do List Section -->
     <div id="todo">
-        <h3>Tarefas</h3>
-        <input id="new-task" type="text" placeholder="Nova tarefa">
+        <h3>Tasks</h3>
+        <input id="new-task" type="text" placeholder="New task">
         <button id="add-task">➕</button>
         <ul id="task-list"></ul>
     </div>

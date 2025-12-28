@@ -1,3 +1,5 @@
+require('electron-reload')(__dirname);
+
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 
@@ -6,7 +8,8 @@ function createWindow() {
         width: 400,
         height: 600,
         webPreferences: {
-            preload: path.join(__dirname, "renderer.js"),
+            // use a dedicated preload script (keeps renderer.js as the page script)
+            preload: path.join(__dirname, "preload.js"),
         },
     });
 

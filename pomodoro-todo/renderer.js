@@ -1,3 +1,5 @@
+//npm run start or npm run dev
+
 window.addEventListener("DOMContentLoaded", () => {
     // ===== Permissão para notificações =====
     if (Notification.permission !== "granted") {
@@ -112,11 +114,24 @@ window.addEventListener("DOMContentLoaded", () => {
             li.className = task.done ? "done" : "";
             if (document.body.classList.contains("dark")) li.classList.add("dark");
 
+            // Create custom animated checkbox (.checkbox9)
+            const checkboxWrapper = document.createElement("div");
+            checkboxWrapper.className = "checkbox9";
+
+            const checkboxId = `task-checkbox-${index}`;
+
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
+            checkbox.id = checkboxId;
             checkbox.checked = task.done;
             checkbox.addEventListener("change", () => toggleTask(index));
-            li.appendChild(checkbox);
+
+            const checkboxLabel = document.createElement("label");
+            checkboxLabel.htmlFor = checkboxId;
+
+            checkboxWrapper.appendChild(checkbox);
+            checkboxWrapper.appendChild(checkboxLabel);
+            li.appendChild(checkboxWrapper);
 
             const span = document.createElement("span");
             span.textContent = task.text;
@@ -159,13 +174,50 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     addTaskBtn.addEventListener("click", addTask);
-    loadTasks();
 
     // ===== Tema Claro/Escuro =====
     const toggleThemeBtn = document.getElementById("toggle-theme");
-    toggleThemeBtn.type = "button";
-    toggleThemeBtn.addEventListener("click", () => {
-        document.body.classList.toggle("dark");
-        loadTasks(); // reaplica dark nos items
-    });
+
+    // Apply saved theme from localStorage (persist across reloads)
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark");
+    } else {
+        document.body.classList.remove("dark");
+    }
+
+    // If the toggle control exists, initialize and wire it up.
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (themeToggle) {
+        // make it focusable and keyboard operable
+        themeToggle.tabIndex = 0;
+        themeToggle.setAttribute('role', 'button');
+        themeToggle.setAttribute('aria-pressed', document.body.classList.contains('dark'));
+
+        const updateToggleVisual = () => {
+            // toggle a .is-dark state on the control so CSS can style rays etc.
+            themeToggle.classList.toggle('is-dark', document.body.classList.contains('dark'));
+            themeToggle.setAttribute('aria-pressed', document.body.classList.contains('dark'));
+        };
+
+        updateToggleVisual();
+
+        const toggleHandler = () => {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+            updateToggleVisual();
+            loadTasks(); // reaplica dark nos items
+        };
+
+        themeToggle.addEventListener('click', toggleHandler);
+        themeToggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                e.preventDefault();
+                toggleHandler();
+            }
+        });
+    }
+
+    // Load tasks after theme is applied so items get correct styling
+    loadTasks();
 });

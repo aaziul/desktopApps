@@ -1,7 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap'); /* Jersey 10 font */
+
+:root {
+    --primary-color: #D291BC;
+    --secondary-color: #FEC8D8;
+    --text-color: #957DAD;
+    --background-color: #FFDFD3;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: #f0f0f0;
-    color: #222;
+    font-family: 'Jersey 10', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
     text-align: center;
     margin: 0;
     padding: 20px;
@@ -13,8 +22,14 @@ body.dark {
     color: #fff;
 }
 
-h1 {
+.title {
+    font-size: 2.5em;
     margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.title::selection {
+    color: var(--primary-color);
 }
 
 #pomodoro {
@@ -27,18 +42,20 @@ h1 {
 }
 
 .controls button {
+    font-family: 'Jersey 10', sans-serif;
     margin: 5px;
     font-size: 1em;
     padding: 10px 15px;
     border: none;
     border-radius: 8px;
-    background: #ff4d4d;
+    background: var(--primary-color);
     color: white;
     cursor: pointer;
 }
 
 .controls button:hover {
-    background: #ff6666;
+    background: var(--secondary-color);
+    color: var(--text-color)
 }
 
 #todo input {
@@ -85,4 +102,205 @@ h1 {
 .theme-toggle {
     text-align: right;
     margin-bottom: 10px;
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.theme-toggle .theme-toggle-sr {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.theme-toggle:hover {
+    cursor: pointer;
+}
+
+.theme-toggle__lightbulb {
+    display: inline-block;
+    vertical-align: middle;
+    transition: transform 0.25s ease, color 0.25s ease;
+    color: inherit;
+}
+
+.theme-toggle:focus {
+    outline: 2px solid #6ea8fe;
+    outline-offset: 2px;
+    border-radius: 6px;
+}
+
+/* When dark, slightly rotate the bulb to indicate active */
+.theme-toggle.is-dark .theme-toggle__lightbulb {
+    transform: rotate(-12deg) scale(1.05);
+    color: #ffd54a;
+}
+
+/* rays highlight in dark mode */
+.theme-toggle.is-dark .theme-toggle__lightbulb__rays path {
+    stroke: #ffd54a;
+    fill: #ffd54a;
+}
+
+.settings-section {
+    font-size: medium;
+}
+
+.focus-input {
+    background-color: transparent;
+    font-family: 'Jersey 10', sans-serif;
+    font-size: medium;
+    color: var(--primary-color);
+    width: 80px;
+    padding: 3px;
+    border-radius: 6px;
+    border: 0;
+}
+
+.focus-input:focus {
+    outline: 2px solid var(--primary-color);
+}
+
+.focus-input::-webkit-inner-spin-button, 
+.focus-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.apply-btn {
+    font-family: 'Jersey 10', sans-serif;
+    font-size: medium;
+    background: var(--primary-color);
+    color: white;
+    border: 0;
+    padding: 5px;
+    border-radius: 10%;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.apply-btn:hover {
+    background: #c17aa3;
+}
+
+/* Custom animated checkbox (checkbox9) */
+.checkbox9 {
+    display: inline-block;
+}
+.checkbox9 input {
+    display: none;
+}
+
+.checkbox9 label {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid #000;
+    border-radius: 4px;
+    position: relative;
+    display: inline-block;
+    transition: border-color ease 0.4s / 2;
+}
+
+.checkbox9 label::before,
+.checkbox9 label::after {
+    content: " ";
+    position: absolute;
+    height: 0;
+    width: 5px;
+    background-color: #34b93d;
+    transform-origin: left top;
+    border-radius: 4px;
+    transition: opacity ease 0.5s;
+}
+
+.checkbox9 label::before {
+    top: 21px;
+    left: 13px;
+    box-shadow: 0 0 0 2px #fff;
+    transform: rotate(-135deg);
+}
+
+.checkbox9 label::after {
+    top: 11px;
+    left: 2px;
+    transform: rotate(-45deg);
+}
+
+.checkbox9 input:checked + label,
+label.checked {
+    border-color: #34b93d;
+}
+
+.checkbox9 input:checked + label::after,
+label.checked::after {
+    height: 2px;
+    animation: checkbox9-bottom calc(0.4s / 2) ease forwards;
+}
+
+.checkbox9 input:checked + label::before,
+label.checked::before {
+    height: 36px;
+    animation: checkbox9-top 0.4s ease forwards;
+}
+@keyframes checkbox9-bottom {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 15px;
+    }
+}
+
+@keyframes checkbox9-top {
+    0% {
+        height: 0;
+    }
+    50% {
+        height: 0;
+    }
+    100% {
+        height: 36px;
+    }
+}
+
+/* Dark-mode tweaks for form controls and checkbox */
+body.dark .controls button {
+    background: #ff6b6b;
+    color: #fff;
+}
+
+body.dark #todo input {
+    background: #2b2b3b;
+    border-color: #444;
+    color: #fff;
+}
+
+/* Ensure checkbox border is visible in dark mode */
+body.dark .checkbox9 label {
+    border-color: #ddd;
+}
+
+/* When checked keep the green accent */
+body.dark .checkbox9 input:checked + label {
+    border-color: #34b93d;
+}
+
+/* Theme toggle button (small) */
+.theme-toggle button {
+    background: transparent;
+    border: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+body.dark .theme-toggle button {
+    color: #fff;
 }
