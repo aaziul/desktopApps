@@ -2,16 +2,25 @@
 /* Jersey 10 font */
 
 :root {
-    --primary-color: #D291BC;
-    --secondary-color: #FEC8D8;
-    --text-color: #957DAD;
-    --background-color: #FFDFD3;
+    /* Light mode colors */
+    --primary-color: #3c515d; /*text color*/
+    --secondary-color: #3d6868;
+    --third-color: #40957f;
+    --fourth-color: #a7c686;
+    --background-color: #fcee8c;
+
+    /* Dark mode colors */
+    --primary-color-dark: #fcee8c; /*text color*/
+    --secondary-color-dark: #a7c686;
+    --third-color-dark: #40957f;
+    --fourth-color-dark: #3d6868;
+    --background-color-dark: #3c515d;
 }
 
 body {
     font-family: 'Jersey 10', sans-serif;
     background: var(--background-color);
-    color: var(--text-color);
+    color: var(--primary-color);
     text-align: center;
     margin: 0;
     padding: 20px;
@@ -19,19 +28,18 @@ body {
 }
 
 body.dark {
-    background: #1e1e2f;
-    color: #fff;
+    background: var(--background-color-dark);
+    color: var(--primary-color-dark);
 }
 
 .title {
     font-size: 50px;
     letter-spacing: 3px;
     margin-bottom: 20px;
-    color: var(--text-color);
 }
 
 .title::selection {
-    color: var(--primary-color);
+    color: var(--third-color);
 }
 
 #pomodoro {
@@ -41,6 +49,10 @@ body.dark {
 #timer {
     font-size: 3em;
     margin: 10px 0;
+}
+
+#timer::selection {
+    color: var(--third-color);
 }
 
 .controls button {
@@ -57,7 +69,7 @@ body.dark {
 
 .controls button:hover {
     background: var(--secondary-color);
-    color: var(--text-color)
+    color: var(--primary-color);
 }
 
 #todo input {
@@ -154,6 +166,11 @@ body.dark {
     font-size: medium;
 }
 
+#label-focus::selection,
+#label-break::selection {
+    color: var(--third-color);
+}
+
 .focus-input {
     background-color: transparent;
     font-family: 'Jersey 10', sans-serif;
@@ -173,6 +190,10 @@ body.dark {
 .focus-input::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.focus-input::selection {
+    color: var(--third-color);
 }
 
 .apply-btn {
@@ -300,16 +321,11 @@ body.dark .checkbox9 input:checked+label {
     border-color: #34b93d;
 }
 
-/* Theme toggle button (small) */
-.theme-toggle button {
-    background: transparent;
-    border: none;
-    font-size: 0.95rem;
-    cursor: pointer;
-}
-
-body.dark .theme-toggle button {
-    color: #fff;
+.alignment-toggle {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+    margin-top: -12px;
 }
 
 /* TOGGLE BUTTON From Uiverse.io by andrew-demchenk0 */
@@ -374,6 +390,7 @@ body.dark .theme-toggle button {
     transform: translateX(30px);
 }
 
+
 /* CHECKMARK From Uiverse.io by andrew-demchenk0 */
 .container {
     --input-focus: #2d8cf0;
@@ -436,18 +453,18 @@ body.dark .theme-toggle button {
     text-decoration: none;
     color: #fff;
     background-color: var(--primary-color);
-    border: 2px solid var(--text-color);
+    border: 2px solid var(--primary-color);
     border-radius: 10px;
-    box-shadow: 2.5px 2.5px 0px var(--text-color);
+    box-shadow: 2.5px 2.5px 0px var(--primary-color);
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .comic-button:hover {
     background-color: white;
-    color: var(--text-color);
-    border: 2px solid var(--text-color);
-    box-shadow: 5px 5px 0px var(--text-color);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    box-shadow: 5px 5px 0px var(--primary-color);
 }
 
 .comic-button:active {

@@ -11,19 +11,21 @@
     <h1 class="title">Pomo To-Do Timer!</h1>
 
     <!-- Theme Toggle Button -->
-    <label class="switch" title="Toggle theme">
-        <input class="toggle" type="checkbox">
-        <span class="slider"></span>
-        <span class="card-side"></span>
-    </label>
+    <div class="alignment-toggle">
+        <label class="switch" title="Toggle theme">
+            <input class="toggle" type="checkbox">
+            <span class="slider"></span>
+            <span class="card-side"></span>
+        </label>
+    </div>
 
     <!-- Time to focus Settings and Break -->
     <div id="settings" class="settings-section">
-        <label>
+        <label id="label-focus">
             Focus Time:
             <input type="number" id="focus-time" value="25" min="1" max="120" class="focus-input">
         </label>
-        <label>
+        <label id="label-break">
             Break Time:
             <input type="number" id="break-time" value="5" min="1" max="60" class="focus-input">
         </label>
